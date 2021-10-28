@@ -14,8 +14,10 @@ public class AuthorizerRepository implements AuthorizerRepositoryInt {
     public Optional<List<Action>> getAvailableActionsBySession(Session session) {
         Optional<List<Integer>> actionsId;
         Optional<List<Integer>> roleIds = UserRoleRelationTable.getRoleIdListByUserId(session.getUserId());
+        // в отдельный метод
         if (roleIds.isEmpty() || roleIds.get().isEmpty()) {
             actionsId = ActionRoleRelationTable.getPublicActionsId();
+            // в отдельный метод
             if (actionsId.isEmpty() || actionsId.get().isEmpty()) {
                 return Optional.of(List.of());
             }

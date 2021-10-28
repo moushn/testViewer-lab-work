@@ -37,6 +37,7 @@ public class MenuControl implements MenuControlInt {
     @Override
     public Optional<List<UserRolesPresent>> getUserList(Session session) {
         String requestedMethodName = getRequestedMethodName();
+        // TODO вынести в отельный метод и обернуть в try-catch блок, который кидает исключение
         if (!authorizerControl.checkAvailabilityMethodBySession(session, requestedMethodName)) {
             return Optional.empty();
         }

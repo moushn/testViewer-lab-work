@@ -25,18 +25,24 @@ public class MenuView {
         int numberChosenMenuItem;
         MenuItemAbstract menuItem;
         int resultCode = requestMenuItems();
+        //TODO должен делать бек-енд
         if (!checkResultRequestMenuItems(resultCode)) {
             this.menuItems.add(new MenuItemExit(new Action(4, "EXIT", "Выход")));
         }
+        // в отдельный метод
         try {
+            // TODO в пропертях инжектится OutputStream и в конструкторе он сетится, а в методе уже берется из филда
             Scanner scanner = new Scanner(System.in);
             while (!isFinish) {
                 try {
+                    // TODO в пропертях инжектится OutputStream и в конструкторе он сетится, а в методе уже берется из филда
                     printMenu();
                     numberChosenMenuItem = Integer.parseInt(scanner.nextLine());
+                    // TODO убрать
                     if (!checkChosenMenuItem(numberChosenMenuItem)) {
                         continue;
                     }
+                    // TODO обработать выход за границы листа отдельно
                     menuItem = menuItems.get(numberChosenMenuItem - 1);
                     isFinish = menuItem.execute(menuControl, session);
                 } catch (NumberFormatException e) {

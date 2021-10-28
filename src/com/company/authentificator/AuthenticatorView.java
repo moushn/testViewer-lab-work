@@ -5,6 +5,8 @@ import com.company.authentificator.interfaces.AuthenticatorControlInt;
 import java.util.Optional;
 import java.util.Scanner;
 
+import static java.lang.Integer.parseInt;
+
 public class AuthenticatorView {
     private final AuthenticatorControlInt authenticatorControl;
     private Session session;
@@ -17,6 +19,8 @@ public class AuthenticatorView {
         boolean isAuthenticatedUser;
         System.out.println("Введите имя пользователя");
 
+        //TODO логику повторной аутентификации надо вынести наружу, а метод, должен кидать исключение, в случае если
+        // аутентификация не удалась
         try {
             Scanner scanner = new Scanner(System.in);
             do {
